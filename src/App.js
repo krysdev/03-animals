@@ -3,8 +3,13 @@
 import AnimalShow from "./AnimalShow";
 
 function App() {
+  const handleClick = () => { 
+    console.log('XXX')
+  };
+
   return (
     <div>
+      <button onClick={handleClick}>ADD</button>
       <AnimalShow/>
     </div>
   );
