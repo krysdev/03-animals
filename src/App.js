@@ -1,20 +1,29 @@
-// import 'bulma/css/bulma.css'; // don't assign any variable, just import
+import './App.css'; // don't assign any variable, just import
 
 import { useState } from 'react';
 import AnimalShow from './AnimalShow';
 
+function getRandomAnimal() {
+  const animals = ['bird', 'cat', 'cow', 'dog', 'gator', 'horse'];
+
+  return animals[Math.floor(Math.random() * animals.length)];
+}
+
 function App() {
-  const [count, setCount] = useState(0);
+  const [animals, setAnimals] = useState([]);
+
+  const renderedAnimals = animals.map((animal, index)=>{
+    return <AnimalShow type={animal} key={index}/>
+  })
 
   const handleClick = () => {
-    setCount(count + 1);
+    setAnimals([...animals, getRandomAnimal()]);
   };
 
   return (
-    <div>
+    <div className='app'>
       <button onClick={handleClick}>ADD</button>
-      <div>Count: {count}</div>
-      <AnimalShow />
+      <div className='animal-list'>{renderedAnimals}</div>
     </div>
   );
 }
